@@ -13,14 +13,15 @@ public class DistanceDetection : MonoBehaviour
     public float minDistMedium = 30;
     public GameObject collectable; //drag and drop collectable object/prefab into this field in the properties box
     
-    //public GameObject radarDisplay; //drag and drop particle system into this field in the properties box, make sure the system is attached to the player capsule and put low to the ground
-    
-    public RadarBar radar; // drag and drop RadarBar into this field to set up the stamina system.
+    public GameObject radarDisplay; //drag and drop particle system into this field in the properties box, make sure the system is attached to the player capsule and put low to the ground
 
+    public AudioSource RadarSource; // Create an empty game object with an Audio Source component, drag and drop here
+    Ray ray;
+    RaycastHit hitData;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -32,20 +33,26 @@ public class DistanceDetection : MonoBehaviour
         {
             radarOn.enabled = false;
             isImgOn = false;
-            
-            //radarDisplay.SetActive(false); //turns off particle system
-            
+
+            radarDisplay.SetActive(false); //turns off particle system
+
             Debug.Log("Radar OFF");
-            radar.Recharge(); // recharges the stamina bar
         }
         else if (Input.GetKey("e")) // when E key is pressed and held down (radar is on)
         {
+            ray = new Ray(transform.position, transform.forward);
+            Debug.DrawRay(ray.origin, ray.direction * 10);
+            // finish raycast logic
+
+
             radarOn.enabled = true;
             isImgOn = true;
-            radar.Scan(0.002f); // Depletes the stamina bar by 0.002f
             
-            //radarDisplay.SetActive(true);
+            radarDisplay.SetActive(true);
+
             
+            RadarSource.Play(); // plays audio
+
             if (dist > minDistMedium) //if object is far away from player
             {
                 Debug.Log("Radar ON, Player is Far From Object. Distance: " + dist);
