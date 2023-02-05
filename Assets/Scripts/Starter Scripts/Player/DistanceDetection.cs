@@ -51,7 +51,7 @@ public class DistanceDetection : MonoBehaviour
             radarDisplay.SetActive(true);
 
             
-            RadarSource.Play(); // plays audio
+            //RadarSource.Play(); // plays audio
 
             if (dist > minDistMedium) //if object is far away from player
             {
