@@ -18,7 +18,7 @@ public class ProximityCheck : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player" && Input.GetKey("e"))
         {
