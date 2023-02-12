@@ -10,6 +10,7 @@ public class PlayerRadar : MonoBehaviour
     private bool radarOn;
     public GameObject obj;
     public RadarBar radar;
+
     // Start is called before the first frame update
     void Start()
     {
